@@ -6,6 +6,7 @@ import { SharedDataService } from '../shared-data/shared-data.service';
 })
 export class PaytmService {
 
+
   constructor(
     public iab: InAppBrowser,
     public shared: SharedDataService) { }
