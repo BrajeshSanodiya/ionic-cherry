@@ -49,7 +49,7 @@ export class ConfigService {
   public productSlidesPerPage = 2.5;
 
   public url: string = this.yourSiteUrl + '/api/';
-  public imgUrl: string = this.yourSiteUrl + "/";
+  public imgUrl: string = this.yourImageUrl + "/";
   public langId: string = localStorage.langId;
   public currecnyCode: string = localStorage.currencyCode;
   public loader = 'dots';
