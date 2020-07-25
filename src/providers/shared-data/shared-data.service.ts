@@ -25,6 +25,7 @@ export class SharedDataService {
   public categories: any = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   public subCategories: any = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   public customerData: { [k: string]: any } = {};
+  public customerData1: { [k: string]: any } = {};
   public recentViewedProducts = new Array();
   public cartProducts = new Array();
   public privacyPolicy = "";
@@ -32,6 +33,7 @@ export class SharedDataService {
   public refundPolicy = "";
   public aboutUs = "";
   public cartquantity = 0;
+  public user_otp = 0;
   public wishList = new Array();
   public tempdata: { [k: string]: any } = {};
   public dir = "ltr";
@@ -378,6 +380,7 @@ export class SharedDataService {
   login(data) {
     this.customerData = data;
     this.customerData.customers_telephone = data.phone;
+	this.customerData.otp = data.otp;
     this.customerData.phone = data.phone;
     this.customerData.customers_id = data.id;
     this.customerData.customers_firstname = data.first_name;
@@ -389,6 +392,22 @@ export class SharedDataService {
     this.storage.set('customerData', this.customerData);
     this.subscribePush();
     console.log(this.customerData);
+  }
+  login1(data) {
+    this.customerData1 = data;
+    this.customerData1.customers_telephone = data.phone;
+	this.customerData1.otp = data.otp;
+    this.customerData1.phone = data.phone;
+    this.customerData1.customers_id = data.id;
+    this.customerData1.customers_firstname = data.first_name;
+    this.customerData1.customers_lastname = data.last_name;
+    this.customerData1.phone = data.phone;
+    this.customerData1.avatar = data.avatar;
+    this.customerData1.image_id = data.image_id;
+    this.customerData1.customers_dob = data.dob;
+    this.storage.set('customerData1', this.customerData1);
+    this.subscribePush();
+    console.log(this.customerData1);
   }
   logOut() {
     this.loading.autoHide(500);

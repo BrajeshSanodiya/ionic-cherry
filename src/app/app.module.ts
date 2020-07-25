@@ -30,6 +30,7 @@ import { PipesModule } from 'src/pipes/pipes.module';
 import { RefundPolicyPageModule } from './modals/refund-policy/refund-policy.module';
 import { CurrencyListPageModule } from './modals/currency-list/currency-list.module';
 import { LoginPageModule } from './modals/login/login.module';
+import { verifyOtpModule } from './modals/otp/otp.module';
 import { SignUpPageModule } from './modals/sign-up/sign-up.module';
 import { ForgotPasswordPageModule } from './modals/forgot-password/forgot-password.module';
 import { PrivacyPolicyPageModule } from './modals/privacy-policy/privacy-policy.module';
@@ -79,6 +80,7 @@ import { BackButtonExitAppService } from 'src/providers/back-button-exit/back-bu
     RefundPolicyPageModule,
     CurrencyListPageModule,
     LoginPageModule,
+	verifyOtpModule,
     SignUpPageModule,
     ForgotPasswordPageModule,
     PrivacyPolicyPageModule,

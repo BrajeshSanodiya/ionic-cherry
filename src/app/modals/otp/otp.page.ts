@@ -1,13 +1,10 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
-//import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from 'src/providers/config/config.service';
 import { ModalController, NavController, NavParams } from '@ionic/angular';
 import { SharedDataService } from 'src/providers/shared-data/shared-data.service';
 import { SignUpPage } from '../sign-up/sign-up.page';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password.page';
-import { verifyOtp } from '../otp/otp.page';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { LoadingService } from 'src/providers/loading/loading.service';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
@@ -16,12 +13,12 @@ import { AppEventsService } from 'src/providers/app-events/app-events.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './otp.page.html',
+  styleUrls: ['./otp.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class verifyOtp implements OnInit {
 
-  formData = { mobile_no: '' };
+  
   errorMessage = '';
   hideGuestLogin: true;
   constructor(
@@ -40,22 +37,32 @@ export class LoginPage implements OnInit {
     this.hideGuestLogin = navParams.get('hideGuestLogin');
     this.shared.currentOpenedModel = this;
   }
-
+formData = { mobile_no: this.shared.customerData1.customers_telephone, mobile_otp:'' };
   login() {
-    this.loading.show();
+	
+	
+		
+	this.loading.show();
     this.errorMessage = '';
     this.config.postHttp('processlogin', this.formData).then((data: any) => {
       this.loading.hide();
       if (data.success == 1) {
-        this.shared.login1(data.data[0]);
+        this.shared.login(data.data[0]);
         this.dismiss();
+		this.navCtrl.navigateForward(this.config.currentRoute);
       }
       if (data.success == 0) {
         this.errorMessage = data.message;
       }
     });
+	
+	
+	
+	
+	
+	
+    
   }
-  
   async openSignUpPage() {
     this.dismiss();
     const modal = await this.modalCtrl.create({
@@ -64,47 +71,12 @@ export class LoginPage implements OnInit {
     return await modal.present();
   }
   async openForgetPasswordPage() {
-	  
-	  
     const modal = await this.modalCtrl.create({
       component: ForgotPasswordPage
     });
-	
     return await modal.present();
   }
-   async openVerifypage() {
-    
-	
-	const modal = await this.modalCtrl.create({
-      component: verifyOtp
-    });
-	
-    return await modal.present();
-	 
-        
-    
-  }
-  
-  
-  
-  openVerifyotp() {
-  this.loading.show();
-    this.errorMessage = '';
-    this.config.postHttp('mobileloginotp', this.formData).then((data: any) => {
-      this.loading.hide();
-      if (data.success == 1) {
-		  
-		
-        this.shared.login1(data.data[0]);
-		this.dismiss();
-		this.openVerifypage();
-		
-      }
-      if (data.success == 0) {
-        this.errorMessage = data.message;
-      }
-    });
-  }
+
   facebookLogin() {
 	  this.createAccount('EAALN0GWamqgBAAz11B9xQEs5jEgKgkRQFGAzCBwS039OlKq5XUQ5cDcPAeAISfFA9YB75nV0V2gDNZB2OSir06ZA7ZAjStb3LcpDZAySkYDCeP0h6iKZBlwvFJompkcZClUuAURFCbjo1D59P9WObGhMG88ZAYCfqub39kqj3pZBUzxgvSvXhCXiOk1Gmyzsvph5LlYY4Ntg186FIiy9n82gDaflXKfc38MZD', 'fb');
     this.fb.getLoginStatus().then((res: any) => {

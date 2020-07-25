@@ -29,6 +29,7 @@ const routes: Routes = [
     }
   },
   { path: 'product-detail/:id', loadChildren: './product-detail/product-detail.module#ProductDetailPageModule' },
+  { path: 'login', loadChildren: './modals/otp/otp.module#verifyOtpModule' },
   { path: 'products/:id/:name/:type', loadChildren: './products/products.module#ProductsPageModule' },
   { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },

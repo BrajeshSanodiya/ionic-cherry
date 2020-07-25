@@ -12,19 +12,20 @@
 <ion-content class="ion-padding">
   <ion-img src="assets/icons_stripe.svg"></ion-img>
 
-  <form #loginForm="ngForm" class="form" (ngSubmit)="login()">
+  <form #loginForm="ngForm" class="form" (ngSubmit)="openVerifyotp()">
     <ion-item>
-      <ion-label position="floating">{{'Email'|translate}}</ion-label>
-      <ion-input type="text" name="email" [(ngModel)]="formData.email" required>
+      <ion-label position="floating">{{'Mobile No.'|translate}}</ion-label>
+      <ion-input type="text" name="mobile_no" [(ngModel)]="formData.mobile_no" maxlength="10" minlength="10" required>
       </ion-input>
     </ion-item>
 
-    <ion-item>
+    <!--
+	<ion-item>
       <ion-label position="floating">{{'Password'|translate}}</ion-label>
       <ion-input type="password" name="password" [(ngModel)]="formData.password" required>
       </ion-input>
     </ion-item>
-
+   -->
     <ion-item lines="none" *ngIf="errorMessage!=''">
       <ion-label>
         {{errorMessage| translate}}
@@ -33,7 +34,7 @@
 
 
     <ion-button [disabled]="!loginForm.form.valid" color="secondary" expand="full" type="submit">
-      {{ 'Login' | translate }}
+      {{ 'Send Otp' | translate }}
     </ion-button>
 
   </form>
