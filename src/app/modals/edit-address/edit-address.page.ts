@@ -32,18 +32,16 @@ export class EditAddressPage implements OnInit {
       this.shippingData.entry_firstname = this.data.firstname;
       this.shippingData.entry_lastname = this.data.lastname;
       this.shippingData.entry_street_address = this.data.street;
-      this.shippingData.entry_country_name = this.data.country_name;
-      this.shippingData.entry_zone = this.data.zone_name;
+      this.shippingData.entry_country_name = this.data.soc_name;
+      this.shippingData.entry_zone = this.data.street;
       this.shippingData.entry_postcode = this.data.postcode;
-      this.shippingData.entry_country_id = this.data.countries_id;
+      this.shippingData.entry_country_id = this.data.society_id;
       this.shippingData.entry_address_id = this.data.address_id;
-      this.shippingData.entry_city = this.data.city;
+      this.shippingData.entry_city = this.data.suburb;
       this.shippingData.entry_zone_id = this.data.zone_id;
       this.shippingData.entry_state = this.data.state;
       this.shippingData.suburb = this.data.suburb;
       this.shippingData.address_id = this.data.address_id;
-
-      if (this.data.zone_name == null) this.shippingData.entry_zone = "other"
     }
 
 
@@ -116,16 +114,13 @@ export class EditAddressPage implements OnInit {
   };
   updateCountryZone() {
     console.log(this.shared.tempdata.entry_country_id);
-    if (this.shared.tempdata.entry_country_id != undefined) {
+    if (this.shared.tempdata.entry_country_id  != undefined) {
       this.shippingData.entry_country_id = this.shared.tempdata.entry_country_id;
       this.shippingData.entry_country_name = this.shared.tempdata.entry_country_name;
       this.shippingData.entry_country_code = this.shared.tempdata.entry_country_code;
-      this.shippingData.entry_zone = this.shared.tempdata.entry_zone;
+      
     }
-    if (this.shared.tempdata.entry_zone != undefined) {
-      this.shippingData.entry_zone = this.shared.tempdata.entry_zone;
-      this.shippingData.entry_zone_id = this.shared.tempdata.entry_zone_id;
-    }
+    
   }
 
   ngOnInit() {

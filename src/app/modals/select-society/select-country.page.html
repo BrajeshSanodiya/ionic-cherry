@@ -5,14 +5,14 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{'Society'|translate}}</ion-title>
+    <ion-title>{{'Country'|translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)" placeholder="{{'Search'|translate}}" #Searchbar></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="selectCountry(item)">
-      {{ item.society_name  }}
+      {{ item.countries_name }}
     </ion-item>
   </ion-list>
 </ion-content>
