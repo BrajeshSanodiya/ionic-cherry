@@ -81,7 +81,7 @@
     "es6-promise-plugin": "^4.2.2",
     "jquery": "^3.5.1",
     "live-server": "^1.2.1",
-    "onesignal-cordova-plugin": "^2.6.0",
+    "onesignal-cordova-plugin": "^2.11.0",
     "plist": "^3.0.1",
     "rxjs": "~6.5.1",
     "ts-md5": "^1.2.6",
@@ -135,7 +135,6 @@
       "cordova-plugin-advanced-http": {
         "OKHTTP_VERSION": "3.10.0"
       },
-      "onesignal-cordova-plugin": {},
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-ionic-webview": {},
@@ -152,7 +151,8 @@
         "APP_ID": "789244894943912",
         "APP_NAME": "Cherry Basket"
       },
-      "cordova-plugin-googleplus": {}
+      "cordova-plugin-googleplus": {},
+      "onesignal-cordova-plugin": {}
     },
     "platforms": [
       "android",
