@@ -34,7 +34,9 @@
       <ion-col *ngFor="let c of shared.categories" (click)="openSubCategories(c)" size="6"
         class="ion-no-padding animate-item">
         <ion-card>
-          <ion-avatar>
+          <ion-avatar style="--border-radius: 5%;
+width: 150px;
+height: 80px;">
             <img *ngIf="c.image" src="{{config.imgUrl+c.image}}" />
           </ion-avatar>
           <ion-text>

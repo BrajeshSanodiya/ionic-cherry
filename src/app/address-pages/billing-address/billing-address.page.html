@@ -20,33 +20,25 @@
       </ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">{{'Address'|translate}}</ion-label>
-      <ion-input type="text" name="address" [(ngModel)]="shared.orderDetails.billing_street_address" required>
-      </ion-input>
-    </ion-item>
+    
 
     <ion-item>
-      <ion-label position="floating">{{'Country'|translate}}</ion-label>
+      <ion-label position="floating">{{'Society'|translate}}</ion-label>
       <ion-input type="text" name="shipping_country" tappable (click)="selectCountryPage()" readonly
         [(ngModel)]="shared.orderDetails.billing_country" required></ion-input>
     </ion-item>
-
     <ion-item>
-      <ion-label position="floating">{{'State'|translate}}</ion-label>
-      <ion-input type="text" required name="shipping_zone" tappable (click)="selectZonePage()" readonly
-        [(ngModel)]="shared.orderDetails.billing_zone"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">{{'City'|translate}}</ion-label>
-      <ion-input type="text" name="shipping_city" [(ngModel)]="shared.orderDetails.billing_city" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">{{'Post code'|translate}}</ion-label>
-      <ion-input type="text" name="shipping_postcode" [(ngModel)]="shared.orderDetails.billing_postcode" required>
+      <ion-label position="floating">{{'Tower'|translate}}</ion-label>
+      <ion-input type="text" name="address" [(ngModel)]="shared.orderDetails.billing_street_address" required>
       </ion-input>
     </ion-item>
+    
+
+    <ion-item>
+      <ion-label position="floating">{{'Flat No.'|translate}}</ion-label>
+      <ion-input type="text" name="shipping_city" [(ngModel)]="shared.orderDetails.billing_city" required></ion-input>
+    </ion-item>
+    
     <ion-item>
       <ion-label position="floating">{{'Phone'|translate}}</ion-label>
       <ion-input type="number" inputmode="tel" name="Phone" [(ngModel)]="shared.orderDetails.billing_phone" required></ion-input>

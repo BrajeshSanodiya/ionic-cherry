@@ -41,11 +41,11 @@ export class ShippingAddressPage implements OnInit {
             this.shared.orderDetails.delivery_firstname = value.firstname;
             this.shared.orderDetails.delivery_lastname = value.lastname;
             this.shared.orderDetails.delivery_state = value.state;
-            this.shared.orderDetails.delivery_city = value.city;
+            this.shared.orderDetails.delivery_city = value.suburb;
             this.shared.orderDetails.delivery_postcode = value.postcode;
             this.shared.orderDetails.delivery_zone = value.zone_name;
-            this.shared.orderDetails.delivery_country = value.country_name;
-            this.shared.orderDetails.delivery_country_id = value.countries_id;
+            this.shared.orderDetails.delivery_country = value.soc_name;
+            this.shared.orderDetails.delivery_country_id = value.society_id;
             this.shared.orderDetails.delivery_street_address = value.street;
             // if ($rootScope.zones.length == 0)
             if (value.zone_code == null) {

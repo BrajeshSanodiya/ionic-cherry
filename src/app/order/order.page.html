@@ -15,12 +15,10 @@
       <h4>{{'Shipping Address'|translate}}</h4>
     </ion-card-header>
     <ion-card-content>
-      {{orderDetail.delivery_street_address+', '+orderDetail.delivery_city+', '+orderDetail.delivery_state+'
-      '+orderDetail.delivery_postcode+',
-      '+orderDetail.delivery_country}}
+      {{'Flat No. '+orderDetail.delivery_city+', Tower '+orderDetail.delivery_street_address+', '+orderDetail.delivery_country}}
     </ion-card-content>
   </ion-card>
-
+<!--
   <ion-card>
     <ion-card-header>
       <h4>{{'Billing Address'|translate}}</h4>
@@ -40,7 +38,7 @@
       {{orderDetail.shipping_method}}
     </ion-card-content>
   </ion-card>
-
+-->
   <ion-card class="order-product">
     <ion-card-header>
       <h4>{{'Products'|translate}}</h4>
@@ -133,7 +131,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-
+<!--
   <ion-card *ngFor="let coupon of couponArray">
     <ion-card-content>
       <ion-row>
@@ -198,7 +196,7 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-
+-->
   <ion-card>
     <ion-card-content>
       <ion-list>

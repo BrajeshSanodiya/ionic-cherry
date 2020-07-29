@@ -33,6 +33,7 @@ export class ShippingMethodPage implements OnInit {
     dat.state = this.shared.orderDetails.delivery_state;
     dat.city = this.shared.orderDetails.delivery_city;
     dat.country_id = this.shared.orderDetails.delivery_country_id;
+	dat.society_id = this.shared.orderDetails.delivery_country_id;
     dat.postcode = this.shared.orderDetails.delivery_postcode;
     dat.zone = this.shared.orderDetails.delivery_zone;
     dat.street_address = this.shared.orderDetails.delivery_street_address;
@@ -41,6 +42,12 @@ export class ShippingMethodPage implements OnInit {
     dat.products = this.getProducts();
     dat.language_id = config.langId;
     dat.currency_code = config.currecnyCode;
+	var price = 0;
+    for (let value of this.shared.cartProducts) {
+      var pp = value.final_price * value.customers_basket_quantity;
+      price = price + pp;
+    }
+	dat.total_price=price;
     this.config.postHttp('getrate', dat).then((data: any) => {
       this.loading.hide();
       if (data.success == 1) {
