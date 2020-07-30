@@ -95,9 +95,9 @@ export class ConfigService {
   public shareApp = 1;
   public fbButton = 1;
   public googleButton = 1;
-  public notificationType = "";
-  public onesignalAppId = "";
-  public onesignalSenderId = "";
+  public notificationType = "onesignal";
+  public onesignalAppId = "238369e7-8ce0-4bd5-bb9e-5a495dd2a43f";
+  public onesignalSenderId = "MmY3ODhhZGItMjA1MC00Mzc0LThkMjItYWU2YjdkMDljOTFi";
   public appSettings: { [k: string]: any } = {};
   public currentRoute = "tabs/home";
   public enableAddressMap: boolean = false;

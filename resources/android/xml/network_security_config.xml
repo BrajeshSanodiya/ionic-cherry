@@ -12,6 +12,6 @@
        </trust-anchors>
    </base-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain>api.mydomain.in</domain>
+        <domain includeSubdomains="true">www.cherrians.com</domain>
     </domain-config>
 </network-security-config>

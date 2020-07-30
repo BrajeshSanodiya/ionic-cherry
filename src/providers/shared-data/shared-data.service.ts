@@ -424,6 +424,7 @@ export class SharedDataService {
   //============================================================================================
   //getting token and passing to server
   subscribePush() {
+    console.log("subscribePush");
     if (this.platform.is('cordova')) {
       // pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
       if (this.config.notificationType == "fcm") {
@@ -456,9 +457,11 @@ export class SharedDataService {
       }
       else if (this.config.notificationType == "onesignal") {
         this.oneSignal.startInit(this.config.onesignalAppId, this.config.onesignalSenderId);
+        console.log("onesignal appID :"+this.config.onesignalAppId +" senderId :"+this.config.onesignalSenderId);
         this.oneSignal.endInit();
         this.oneSignal.getIds().then((data) => {
           this.registerDevice(data.userId);
+          console.log("onesignal userId :"+data.userId);
         })
       }
     }
