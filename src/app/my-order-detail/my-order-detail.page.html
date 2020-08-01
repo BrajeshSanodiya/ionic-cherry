@@ -15,7 +15,7 @@
       <h4><b>{{'Shipping Address'|translate}}</b></h4>
     </ion-card-header>
     <ion-card-content>
-      {{order.delivery_street_address+', '+order.delivery_city+', '+order.delivery_state+' '+order.delivery_postcode+', '+order.delivery_country}}
+      {{order.delivery_street_address+', '+order.delivery_city}}
     </ion-card-content>
   </ion-card>
 
@@ -24,7 +24,7 @@
       <h4><b>{{'Billing Address'|translate}}</b></h4>
     </ion-card-header>
     <ion-card-content>
-      {{order.billing_street_address+', '+order.billing_city+', '+order.billing_state+' '+order.billing_postcode+', '+order.billing_country}}
+      {{order.billing_street_address+', '+order.billing_city}}
     </ion-card-content>
   </ion-card>
 

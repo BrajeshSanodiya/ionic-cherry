@@ -184,6 +184,20 @@
   </ion-card>
   <ion-button *ngIf="!config.appInProduction" size="small" fill="clear" (click)="couponslist()">
     {{'Coupon Codes List'|translate}}</ion-button>
+	
+	<ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="6">
+          <strong>{{'Wallet Balance'|translate}}</strong>
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          <strong>{{walletbalance | curency}}</strong>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
 <!--
   <ion-card>
     <ion-card-header>

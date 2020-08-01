@@ -33,6 +33,7 @@ export class OrderPage implements OnInit {
   discount = 0;
   productsTotal = 0;
   totalAmountWithDisocunt = 0;
+  walletbalance=0;
   nonce = '';
   stripeCard = {
     number: '',
@@ -47,6 +48,7 @@ export class OrderPage implements OnInit {
   publicKeyStripe = "";
   razorPayKey: any;
   keyRazorPay: any;
+  paytmS: any;
   constructor(
     public navCtrl: NavController,
     public httpClient: HttpClient,
@@ -109,13 +111,18 @@ export class OrderPage implements OnInit {
     });
   };
   initializePaymentMethods() {
+	  
+	
     // this.loading.show();
     var dat: { [k: string]: any } = {};
     dat.language_id = this.config.langId;
     dat.currency_code = this.config.currecnyCode;
+	dat.cust_id=this.shared.customerData.customers_id
     this.config.postHttp('getpaymentmethods', dat).then((data: any) => {
       //  this.loading.hide();
       if (data.success == 1) {
+		  
+		 this.walletbalance=data.balance[0].balance;
         this.paymentMethods = data.data;
         for (let a of data.data) {
 
@@ -136,9 +143,9 @@ export class OrderPage implements OnInit {
           //   this.getToken();
           // }
 
-          // if (a.method == "paytm") {
-          //   this.paytmS = a.public_key;
-          // }
+           if (a.method == "paytm") {
+             this.paytmS = a.public_key;
+           }
         }
       }
     },
