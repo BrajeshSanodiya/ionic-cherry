@@ -28,14 +28,13 @@ export class PaytmService {
                     <table border="1">
                       <tbody>
                           <input type="hidden" name="MID" value="${mId}">
-						  <input type="hidden" name="ORDER_ID" value="${orderId}">
-                          <input type="hidden" name="CUST_ID" value="${customerId}">
-						  <input type="hidden" name="INDUSTRY_TYPE_ID" value="Retail">
-						  <input type="hidden" name="CHANNEL_ID" value="WAP">
-                          <input type="hidden" name="TXN_AMOUNT" value="${amount}">
                           <input type="hidden" name="WEBSITE" value="WEBSTAGING">
+                          <input type="hidden" name="ORDER_ID" value="${orderId}">
+                          <input type="hidden" name="CUST_ID" value="${customerId}">
+                          <input type="hidden" name="INDUSTRY_TYPE_ID" value="Retail">
+                          <input type="hidden" name="CHANNEL_ID" value="WAP">
+                          <input type="hidden" name="TXN_AMOUNT" value="${amount}">
                           <input type="hidden" name="CALLBACK_URL" value="${callBackUrl}">
-						  <input type="hidden" name="USERID" value="${customerId}">
                           <input type="hidden" name="CHECKSUMHASH" value="${chcksum}">
                       </tbody>
                     </table>
@@ -59,7 +58,7 @@ export class PaytmService {
         hideurlbar: "yes"
       };
 
-      const bb = this.iab.create(pageContentUrl, "_self", options)
+      const bb = this.iab.create(pageContentUrl, "_blank", options)
       bb.on('loadstart').subscribe(res => {
         console.log(res.url);
         if (res.url == callBackUrl) {
