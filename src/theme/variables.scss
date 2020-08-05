@@ -142,6 +142,16 @@
 //  * other Themes
 //  * ----------------------------------------------------------------------------
 //  */
+
+.hypermart-theme {
+  --ion-color-primary: #f3eeee;
+  --ion-color-primary-rgb: 57, 128, 0;
+  --ion-color-primary-contrast: #231f20;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #f3eeee;
+  --ion-color-primary-tint: #f3eeee;
+}
+
 .green-theme {
   --ion-color-primary: #398000;
   --ion-color-primary-rgb: 57, 128, 0;
