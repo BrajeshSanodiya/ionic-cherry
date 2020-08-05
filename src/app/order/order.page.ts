@@ -770,7 +770,7 @@ export class OrderPage implements OnInit {
 
 
     this.loading.show();
-    this.config.getHttp("generatpaytmhashes").then((data: any) => {
+    this.config.getHttp("generatpaytmhashes/"+cutomerId+"/"+amount).then((data: any) => {
       this.loading.hide();
       checkSum = data.data.CHECKSUMHASH;
       orderId = data.data.ORDER_ID;
