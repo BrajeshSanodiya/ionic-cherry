@@ -83,6 +83,7 @@ export class AppComponent {
   ];
   a2 = [
     { name: 'Home', icon: 'home', url: 'home', img: 'assets/left-menu-icon/home.png' },
+	{ name: 'Wallet', icon: 'wallet', img: 'assets/left-menu-icon/setting.png', url: '/wallet', value: 'walletPage' },
     { name: 'Categories', icon: 'apps', url: 'categories', img: 'assets/left-menu-icon/category.png' },
     {
       name: 'Shop', icon: 'cash', url: '/products', img: 'assets/left-menu-icon/shop.png',
@@ -103,6 +104,7 @@ export class AppComponent {
     { name: 'Share', icon: 'share', img: 'assets/left-menu-icon/share.png', url: 'share', value: 'sharePage' },
     { name: 'Rate Us', icon: 'star-half', img: 'assets/left-menu-icon/rating.png', url: 'rateUs', value: 'ratePage' },
     { name: 'Settings', icon: 'settings', img: 'assets/left-menu-icon/setting.png', url: '/settings', value: 'settingsPage' }
+	
   ];
   a4 = [
     { name: 'My Wish List', icon: 'heart', img: 'assets/left-menu-icon/wishlist.png', url: '/wish-list', value: 'wishListPage' },

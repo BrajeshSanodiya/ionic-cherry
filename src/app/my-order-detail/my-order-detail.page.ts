@@ -30,7 +30,7 @@ export class MyOrderDetailPage implements OnInit {
     dat.products_id = id;
     dat.language_id = this.config.langId;
     dat.currency_code = this.config.currecnyCode;
-    this.config.postHttp(this.config.url + 'getallproducts', dat).then((data: any) => {
+    this.config.postHttp('getallproducts', dat).then((data: any) => {
       this.loading.hide();
       if (data.success == 1) {
         let p = data.product_data[0]
