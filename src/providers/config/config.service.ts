@@ -28,17 +28,17 @@ if (localStorage.langId == undefined) {
 
 export class ConfigService {
 
-  public yourSiteUrl: string = 'https://www.cherrians.com';//'https://stage.cherrians.com';
+  public yourSiteUrl: string = 'https://www.cherrians.com';//'https://www.150hypermart.in'; 'https://www.cherrians.com';//'https://stage.cherrians.com';
   public consumerKey: string = "a23d1dee1587377148a2c738b9";
   public consumerSecret: string = "ea7e2beb1587377148a0448ad1";
-  public yourImageUrl: string = 'https://cdn.cherrians.com'; //'https://www.cherrians.com' //'https://stage.cherrians.com';
+  public yourImageUrl: string = 'https://cdn.cherrians.com';//'https://cdn.150hypermart.in'; 'https://cdn.cherrians.com';
 
   public showIntroPage = 1; //  0 to hide and 1 to show intro page
   public appInProduction = true;//  0 to hide and 1 to show intro page
   public defaultIcons = true; //  0 to hide and 1 to show intro page
 
   public appNavigationTabs = false; //(localStorage.appNavigation == "tabs") ? true : false; //  true for tabs layout and false for sidemenu layout
-  public appTheme = 'green'; // default, green, plum, magnesium, salmon, pink, orange, maroon, cayanne, red, grape, sky, sea,  
+  public appTheme = 'green'; // hypermart,default, green, plum, magnesium, salmon, pink, orange, maroon, cayanne, red, grape, sky, sea, white 
   public darkMode = false;
 
   public bannerAnimationEffect = "default";// fade, coverFlow, flip, cube, default
