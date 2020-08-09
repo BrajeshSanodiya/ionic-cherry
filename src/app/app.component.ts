@@ -145,6 +145,12 @@ export class AppComponent {
 
 
     });
+	
+	
+
+    
+
+
     let connectedToInternet = true;
     network.onDisconnect().subscribe(() => {
       connectedToInternet = false;

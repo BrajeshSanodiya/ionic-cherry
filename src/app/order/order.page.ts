@@ -68,7 +68,7 @@ export class OrderPage implements OnInit {
 
   //============================================================================================  
   //placing order
-  addOrder(nonce) {
+  addOrder_paytm(nonce) {
     this.loading.autoHide(5000);
     this.orderDetail.customers_id = this.shared.customerData.customers_id;
     this.orderDetail.customers_name = this.shared.orderDetails.delivery_firstname + " " + this.shared.orderDetails.delivery_lastname;
@@ -95,6 +95,51 @@ export class OrderPage implements OnInit {
     this.orderDetail.nonce = nonce;
     this.orderDetail.language_id = this.config.langId;
     this.orderDetail.currency_code = this.config.currecnyCode;
+	this.orderDetail.payment_status = 1;
+    var dat = this.orderDetail;
+    console.log(dat);
+    this.config.postHttp('addtoorder', dat).then((data: any) => {
+      //this.loading.hide();
+      if (data.success == 1) {
+        this.products = [];
+        this.orderDetail = {};
+        //this.shared.orderDetails = {};
+        this.navCtrl.navigateRoot(this.config.currentRoute + "/thank-you");
+      }
+      if (data.success == 0) { this.shared.showAlert(data.message); }
+    }, err => {
+      this.shared.showAlert("Server Error" + " " + err.status);
+    });
+  };
+  
+   addOrder(nonce) {
+    this.loading.autoHide(5000);
+    this.orderDetail.customers_id = this.shared.customerData.customers_id;
+    this.orderDetail.customers_name = this.shared.orderDetails.delivery_firstname + " " + this.shared.orderDetails.delivery_lastname;
+    this.orderDetail.delivery_name = this.shared.orderDetails.billing_firstname + " " + this.shared.orderDetails.billing_lastname;
+
+    if (this.shared.orderDetails.guest_status == 1) {
+      this.orderDetail.email = this.shared.orderDetails.email;
+      this.orderDetail.customers_telephone = this.shared.orderDetails.delivery_phone;
+    }
+    else {
+      this.orderDetail.email = this.shared.customerData.email;
+      this.orderDetail.customers_telephone = this.shared.customerData.customers_telephone;
+    }
+
+    this.orderDetail.delivery_suburb = this.shared.orderDetails.delivery_state
+    this.orderDetail.customers_suburb = this.shared.orderDetails.delivery_state;
+    this.orderDetail.customers_address_format_id = '1';
+    this.orderDetail.delivery_address_format_id = '1';
+    this.orderDetail.products = this.products;
+    this.orderDetail.is_coupon_applied = this.couponApplied;
+    this.orderDetail.coupons = this.couponArray;
+    this.orderDetail.coupon_amount = this.discount;
+    this.orderDetail.totalPrice = this.totalAmountWithDisocunt;
+    this.orderDetail.nonce = nonce;
+    this.orderDetail.language_id = this.config.langId;
+    this.orderDetail.currency_code = this.config.currecnyCode;
+	this.orderDetail.payment_status = 0;
     var dat = this.orderDetail;
     console.log(dat);
     this.config.postHttp('addtoorder', dat).then((data: any) => {
@@ -749,7 +794,9 @@ export class OrderPage implements OnInit {
 
   paytmPayment() {
     let mId = ""
-    let amount = parseInt((this.totalAmountWithDisocunt.toFixed(2)).toString());
+    let order_amount = parseInt((this.totalAmountWithDisocunt.toFixed(2)).toString());
+	let amount = 0;
+	let wallet_balance=0;
     let production = true;
 
     let cutomerId = 0;
@@ -767,22 +814,37 @@ export class OrderPage implements OnInit {
         }
       }
     });
-
-
-    this.loading.show();
+   this.loading.show();
+    this.config.getHttp("walletBalance/"+cutomerId).then((data: any) => {
+      this.loading.hide();
+      wallet_balance = data.data.walle_balance;
+	  if(wallet_balance>=order_amount){
+		  
+		  this.addOrder_paytm(12345);
+		  
+	  }
+	  else{
+		  
+		  amount=order_amount-wallet_balance;
+		  
+	this.loading.show();
     this.config.getHttp("generatpaytmhashes/"+cutomerId+"/"+amount).then((data: any) => {
       this.loading.hide();
       checkSum = data.data.CHECKSUMHASH;
       orderId = data.data.ORDER_ID;
       this.paytmService.paytmpage(checkSum, orderId, mId, cutomerId, amount, production).then((data: any) => {
         if (data.status == "sucess") {
-          this.addOrder(data.id);
+          this.addOrder_paytm(data.id);
         }
         else {
           this.shared.toast("Paytm Error");
         }
-      });
+		  
+		  
+	  });
     });
+  }
+	});
   }
   ngOnInit() {
     this.orderDetail = (JSON.parse(JSON.stringify(this.shared.orderDetails)));

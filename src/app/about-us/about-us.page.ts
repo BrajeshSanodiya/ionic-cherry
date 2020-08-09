@@ -53,7 +53,7 @@ export class AboutUsPage implements OnInit {
   }
   openSite() {
     this.loading.autoHide(2000);
-    this.iab.create(this.config.siteUrl, "blank");
+	this.iab.create(this.config.yourSiteUrl, "blank");
   }
   ionViewWillEnter() {
     if (this.config.admob == 1) this.shared.showAd();
