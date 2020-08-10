@@ -7,11 +7,11 @@ import { PaytmService } from 'src/providers/paytm/paytm.service';
 import { LoadingService } from 'src/providers/loading/loading.service';
 
 @Component({
-  selector: 'app-my-orders',
-  templateUrl: './my-orders.page.html',
-  styleUrls: ['./my-orders.page.scss'],
+  selector: 'app-my-wallet',
+  templateUrl: './my-wallet.page.html',
+  styleUrls: ['./my-wallet.page.scss'],
 })
-export class MyOrdersPage implements OnInit {
+export class MyWalletPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll, { static: false }) infinite: IonInfiniteScroll;
   paymentMethods = [];
@@ -50,17 +50,15 @@ export class MyOrdersPage implements OnInit {
     this.httpRunning = true;
     this.orders = [];
     this.loading.show();
-    var dat: { [k: string]: any } = {};
-    dat.customers_id = this.shared.customerData.customers_id;
-    dat.language_id = this.config.langId;
-    dat.currency_code = this.config.currecnyCode;
-    this.config.postHttp('getorders', dat).then((data: any) => {
+   
+    this.config.getHttp('mywallet/'+this.shared.customerData.customers_id).then((data: any) => {
       this.loading.hide();
       this.httpRunning = false;
       //$rootScope.address=response.data.data;
       if (data.success == 1) {
         this.orders = [];
         this.orders = data.data;
+		this.walletbalance=data.message;
 		
       }
       // $scope.$broadcast('scroll.refreshComplete');
@@ -195,10 +193,10 @@ export class MyOrdersPage implements OnInit {
   }
   
 
-  showOrderDetail(order) {
+  addMoney() {
 
-    this.shared.myOrderDetialPageData = order;
-    this.navCtrl.navigateForward(this.config.currentRoute + "/my-order-detail");
+    
+    this.navCtrl.navigateForward(this.config.currentRoute + "/add-money");
 
   }
   openProductsPage() {

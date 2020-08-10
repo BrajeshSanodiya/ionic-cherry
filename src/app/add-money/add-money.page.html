@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-no-padding">{{'Recharge Wallet'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+
+  <form #loginForm="ngForm" class="form" (ngSubmit)="orderPayment()">
+    <ion-item>
+      <ion-label position="floating">{{'Amount'|translate}}</ion-label>
+      <ion-input type="number" name="amount" [(ngModel)]="formData.amount" required>
+      </ion-input>
+	  
+    </ion-item>
+
+    <!--
+	<ion-item>
+      <ion-label position="floating">{{'Password'|translate}}</ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="formData.password" required>
+      </ion-input>
+    </ion-item>
+   -->
+    <ion-item lines="none" *ngIf="errorMessage!=''">
+      <ion-label>
+        {{errorMessage| translate}}
+      </ion-label>
+    </ion-item>
+
+
+    <ion-button [disabled]="!loginForm.form.valid" color="secondary" expand="full" type="submit">
+      {{ 'Recharge Wallet' | translate }}
+    </ion-button>
+
+  </form>
+
+  
+</ion-content>

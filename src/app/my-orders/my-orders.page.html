@@ -44,7 +44,7 @@
   </ion-grid>
 
   <ion-grid>
-    <ion-card *ngFor="let order of orders" (click)="showOrderDetail(order)">
+    <ion-card *ngFor="let order of orders" >
       <ion-card-content>
         <ion-row>
           <ion-col size="6">
@@ -79,8 +79,25 @@
             <strong>{{order.orders_status}}</strong>
           </ion-col>
         </ion-row>
+		<ion-row >
+          <ion-col size="6">
+            {{'Payment Status'|translate}}
+          </ion-col>
+          <ion-col class="ion-text-right" size="6">
+            <strong> {{ order.payment_status == '1' ? 'Done' : 'Pending' }}</strong>
+          </ion-col>
+        </ion-row>
+		<ion-row >
+          <ion-col size="6">
+           <ion-button (click)="showOrderDetail(order)" fill="outline">View</ion-button>
+          </ion-col>
+          <ion-col class="ion-text-right" size="6">
+<ion-button  *ngIf="order.payment_status == '0' && order_order_status!=3" (click)="orderPayment(order.order_price,order.orders_id,order.wallet_deduct)" fill="outline">Pay</ion-button>
+          </ion-col>
+        </ion-row>
       </ion-card-content>
     </ion-card>
+	
   </ion-grid>
   <!-- <ion-infinite-scroll #infinite (ionInfinite)="getOrders()">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

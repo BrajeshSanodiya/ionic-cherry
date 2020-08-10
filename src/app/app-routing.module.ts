@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'intro', loadChildren: './intro/intro.module#IntroPageModule' },
   { path: 'my-account', loadChildren: './my-account/my-account.module#MyAccountPageModule', canActivate: [AuthGuard] },
   { path: 'my-orders', loadChildren: './my-orders/my-orders.module#MyOrdersPageModule', canActivate: [AuthGuard] },
+  { path: 'wallet', loadChildren: './my-wallet/my-wallet.module#MyWalletPageModule', canActivate: [AuthGuard] },
   { path: 'news', loadChildren: './news/news.module#NewsPageModule' },
   { path: 'news-detail', loadChildren: './news-detail/news-detail.module#NewsDetailPageModule' },
   { path: 'news-list/:id/:name', loadChildren: './news-list/news-list.module#NewsListPageModule' },
@@ -82,6 +83,10 @@ const routes: Routes = [
   { path: 'home10', loadChildren: './home-pages/home10/home10.module#Home10PageModule' },
   {
     path: 'my-order-detail', loadChildren: './my-order-detail/my-order-detail.module#MyOrderDetailPageModule',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'add-money', loadChildren: './add-money/add-money.module#AddMoneyPageModule',
     canActivate: [AuthGuard]
   },
 

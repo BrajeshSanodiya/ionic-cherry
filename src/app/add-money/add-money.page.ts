@@ -7,11 +7,11 @@ import { PaytmService } from 'src/providers/paytm/paytm.service';
 import { LoadingService } from 'src/providers/loading/loading.service';
 
 @Component({
-  selector: 'app-my-orders',
-  templateUrl: './my-orders.page.html',
-  styleUrls: ['./my-orders.page.scss'],
+  selector: 'app-add-money',
+  templateUrl: './add-money.page.html',
+  styleUrls: ['./add-money.page.scss'],
 })
-export class MyOrdersPage implements OnInit {
+export class AddMoneyPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll, { static: false }) infinite: IonInfiniteScroll;
   paymentMethods = [];
@@ -30,11 +30,12 @@ export class MyOrdersPage implements OnInit {
     private applicationRef: ApplicationRef
   ) {
   }
+  formData = { amount:0 };
 
   refreshPage() {
     this.page = 1;
     this.infinite.disabled = false;
-    this.getOrders();
+    
   }
   addCurrecny(order, v2) {
     return order.currency + " " + v2;
@@ -42,52 +43,25 @@ export class MyOrdersPage implements OnInit {
 
   ngOnInit() {
     this.httpRunning = true;
-    this.getOrders();
 	this.initializePaymentMethods();
   }
 
-  getOrders() {
-    this.httpRunning = true;
-    this.orders = [];
-    this.loading.show();
-    var dat: { [k: string]: any } = {};
-    dat.customers_id = this.shared.customerData.customers_id;
-    dat.language_id = this.config.langId;
-    dat.currency_code = this.config.currecnyCode;
-    this.config.postHttp('getorders', dat).then((data: any) => {
-      this.loading.hide();
-      this.httpRunning = false;
-      //$rootScope.address=response.data.data;
-      if (data.success == 1) {
-        this.orders = [];
-        this.orders = data.data;
-		
-      }
-      // $scope.$broadcast('scroll.refreshComplete');
-    },
-      function (response) {
-        this.loading.hide();
-
-        this.shared.toast("Server Error while Loading Orders");
-        console.log(response);
-      });
-  };
   
   
-  updateOrder(order_id,amount){
+  
+  updateOrder(amount){
 	  
 	let cutomerId=0;
     cutomerId = this.shared.customerData.customers_id;
 		  
 	this.loading.show();
-    this.config.getHttp("updatePayment/"+order_id+"/"+amount+"/"+cutomerId).then((data: any) => {
+    this.config.getHttp("walletRecharge/"+amount+"/"+cutomerId).then((data: any) => {
       this.loading.hide();
      
 	 
         if (data.success == 1) {
-		  this.shared.toast("Payment Done");
-		  this.ngOnInit();
-          this.navCtrl.navigateRoot(this.config.currentRoute + "/my-orders");
+		  this.shared.toast("Recharge Done");
+          this.navCtrl.navigateRoot(this.config.currentRoute + "/wallet");
         }
         else {
           this.shared.toast("Paytm Error");
@@ -131,12 +105,10 @@ export class MyOrdersPage implements OnInit {
         this.shared.showAlert("getPaymentMethods Server Error");
       });
   }
-  orderPayment(amountt,order_id,wallet_ded) {
+  orderPayment() {
     let mId = ""
-    let order_amount = parseInt(amountt)-parseInt(wallet_ded);
 	
-	let amount = 0;
-	let wallet_balance=0;
+	let amount = this.formData.amount;
     let production = true;
 
     let cutomerId = 0;
@@ -154,34 +126,14 @@ export class MyOrdersPage implements OnInit {
         }
       }
     });
-   this.loading.show();
-    this.config.getHttp("walletBalance/"+cutomerId).then((data: any) => {
-      this.loading.hide();
-      wallet_balance = data.data.walle_balance;
-	  if(wallet_balance>=order_amount){
-		  
-		  this.updateOrder(order_id,order_amount);
-		  
-	  }
-	  else{
-		  if(wallet_balance>0){
-			  
-			  amount=order_amount-wallet_balance;
-			  
-		  }
-		  else{
-			  
-			  amount=order_amount;
-		  }
-		  
-	this.loading.show();
+   	this.loading.show();
     this.config.getHttp("generatpaytmhashes/"+cutomerId+"/"+amount).then((data: any) => {
       this.loading.hide();
       checkSum = data.data.CHECKSUMHASH;
       orderId = data.data.ORDER_ID;
       this.paytmService.paytmpage(checkSum, orderId, mId, cutomerId, amount, production).then((data: any) => {
         if (data.status == "sucess") {
-          this.updateOrder(order_id,amount);
+          this.updateOrder(amount);
         }
         else {
           this.shared.toast("Paytm Error");
@@ -190,8 +142,6 @@ export class MyOrdersPage implements OnInit {
 		  
 	  });
     });
-  }
-	});
   }
   
 
