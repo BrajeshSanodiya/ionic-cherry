@@ -22,7 +22,7 @@ export class PaytmService {
 
       var callBackUrl = paytmUrl + "/theia/paytmCallback?ORDER_ID=" + orderId;
 
-      var completeUrl = paytmUrl + "/order/process";
+      var completeUrl = "https://securegw.paytm.in/theia/api/v1/showPaymentPage?mid="+mId+"&orderId="+orderId;
       var pageContetn = `<html>
    <head>
       <title>Show Payment Page</title>
@@ -31,7 +31,7 @@ export class PaytmService {
       <center>
          <h1>Please do not refresh this page...</h1>
       </center>
-      <form method="post" action="https://securegw.paytm.in/theia/api/v1/showPaymentPage?mid=${mId}&orderId=${orderId}" name="paytm">
+      <form method="post" action="${completeUrl}" name="paytm">
          <table border="1">
             <tbody>
                <input type="hidden" name="mid" value="${mId}">
@@ -71,7 +71,7 @@ export class PaytmService {
       bb.on('loadstart').subscribe(res => {
         console.log(res.url);
         if (res.url == callBackUrl) {
-         this.config.getHttp("generatpaytmhashes").then((data: any) => {
+         this.config.getHttp("generatpaytmhashesfororder/"+orderId).then((data: any) => {
             this.loading.hide();
             console.log("---------------- payment sucess ---------------");
             bb.close();
