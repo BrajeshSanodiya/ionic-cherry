@@ -68,7 +68,7 @@ export class OrderPage implements OnInit {
 
   //============================================================================================  
   //placing order
-  addOrder_paytm(nonce) {
+  addOrder_paytm(nonce,trans_id) {
     this.loading.autoHide(5000);
     this.orderDetail.customers_id = this.shared.customerData.customers_id;
     this.orderDetail.customers_name = this.shared.orderDetails.delivery_firstname + " " + this.shared.orderDetails.delivery_lastname;
@@ -96,6 +96,7 @@ export class OrderPage implements OnInit {
     this.orderDetail.language_id = this.config.langId;
     this.orderDetail.currency_code = this.config.currecnyCode;
 	this.orderDetail.payment_status = 1;
+	this.orderDetail.trans_id = trans_id;
     var dat = this.orderDetail;
     console.log(dat);
     this.config.postHttp('addtoorder', dat).then((data: any) => {
@@ -820,7 +821,7 @@ export class OrderPage implements OnInit {
       wallet_balance = data.data.walle_balance;
 	  if(wallet_balance>=order_amount){
 		  
-		  this.addOrder_paytm(12345);
+		  this.addOrder_paytm(12345,0);
 		  
 	  }
 	  else{
@@ -833,9 +834,15 @@ export class OrderPage implements OnInit {
       checkSum = data.data.CHECKSUMHASH;
       orderId = data.data.ORDER_ID;
       this.paytmService.paytmpage(checkSum, orderId, mId, cutomerId, amount, production).then((data: any) => {
-        if (data.status == "sucess") {
-          this.addOrder_paytm(data.id);
+        if (data.status == "sucess" && data.trans_status=='TXN_SUCCESS') {
+			
+          this.addOrder_paytm(data.id,data.trans_id);
         }
+		else if(data.status == "sucess" && data.trans_status=='TXN_FAILURE'){
+			
+			this.shared.toast("Transaction Failed");
+			
+		}
         else {
           this.shared.toast("Paytm Error");
         }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import { SharedDataService } from '../shared-data/shared-data.service';
+import { ConfigService } from 'src/providers/config/config.service';
+import { LoadingService } from 'src/providers/loading/loading.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +10,8 @@ export class PaytmService {
 
   constructor(
     public iab: InAppBrowser,
+	public config: ConfigService,
+	public loading: LoadingService,
     public shared: SharedDataService) { }
 
   paytmpage(chcksum, orderId, mId, customerId, amount, inProduction) {
@@ -67,9 +71,14 @@ export class PaytmService {
       bb.on('loadstart').subscribe(res => {
         console.log(res.url);
         if (res.url == callBackUrl) {
-          console.log("---------------- payment sucess ---------------");
-          bb.close();
-          resolve({ status: "sucess", id: orderId });
+         this.config.getHttp("generatpaytmhashes").then((data: any) => {
+            this.loading.hide();
+            console.log("---------------- payment sucess ---------------");
+            bb.close();
+resolve({ status: "sucess", id: orderId ,trans_status:data.data.transaction_status ,trans_id:data.data.transaction_id });
+      
+    
+         });
         }
       }), error => {
         console.log(error);

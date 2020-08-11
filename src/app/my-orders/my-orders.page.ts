@@ -74,13 +74,13 @@ export class MyOrdersPage implements OnInit {
   };
   
   
-  updateOrder(order_id,amount){
+  updateOrder(order_id,amount,trans_id){
 	  
 	let cutomerId=0;
     cutomerId = this.shared.customerData.customers_id;
 		  
 	this.loading.show();
-    this.config.getHttp("updatePayment/"+order_id+"/"+amount+"/"+cutomerId).then((data: any) => {
+    this.config.getHttp("updatePayment/"+order_id+"/"+amount+"/"+cutomerId+"/"+trans_id).then((data: any) => {
       this.loading.hide();
      
 	 
@@ -160,7 +160,7 @@ export class MyOrdersPage implements OnInit {
       wallet_balance = data.data.walle_balance;
 	  if(wallet_balance>=order_amount){
 		  
-		  this.updateOrder(order_id,order_amount);
+		  this.updateOrder(order_id,order_amount,0);
 		  
 	  }
 	  else{
@@ -180,9 +180,14 @@ export class MyOrdersPage implements OnInit {
       checkSum = data.data.CHECKSUMHASH;
       orderId = data.data.ORDER_ID;
       this.paytmService.paytmpage(checkSum, orderId, mId, cutomerId, amount, production).then((data: any) => {
-        if (data.status == "sucess") {
-          this.updateOrder(order_id,amount);
+        if (data.status == "sucess" && data.trans_status=='TXN_SUCCESS') {
+          this.updateOrder(order_id,amount,data.trans_id);
         }
+		else if(data.status == "sucess" && data.trans_status=='TXN_FAILURE'){
+			
+			this.shared.toast("Transaction Failed");
+			
+		}
         else {
           this.shared.toast("Paytm Error");
         }

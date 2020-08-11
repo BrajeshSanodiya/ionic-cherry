@@ -49,13 +49,13 @@ export class AddMoneyPage implements OnInit {
   
   
   
-  updateOrder(amount){
+  updateOrder(order_id,amount,trans_id){
 	  
 	let cutomerId=0;
     cutomerId = this.shared.customerData.customers_id;
 		  
 	this.loading.show();
-    this.config.getHttp("walletRecharge/"+amount+"/"+cutomerId).then((data: any) => {
+    this.config.getHttp("walletRecharge/"+amount+"/"+cutomerId+"/"+order_id+"/"+trans_id).then((data: any) => {
       this.loading.hide();
      
 	 
@@ -132,9 +132,14 @@ export class AddMoneyPage implements OnInit {
       checkSum = data.data.CHECKSUMHASH;
       orderId = data.data.ORDER_ID;
       this.paytmService.paytmpage(checkSum, orderId, mId, cutomerId, amount, production).then((data: any) => {
-        if (data.status == "sucess") {
-          this.updateOrder(amount);
+        if (data.status == "sucess" && data.trans_status=='TXN_SUCCESS') {
+          this.updateOrder(orderId,amount,data.trans_id);
         }
+		else if(data.status == "sucess" && data.trans_status=='TXN_FAILURE'){
+			
+			this.shared.toast("Transaction Failed");
+			
+		}
         else {
           this.shared.toast("Paytm Error");
         }
