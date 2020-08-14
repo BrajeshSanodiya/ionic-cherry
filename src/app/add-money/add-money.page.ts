@@ -106,6 +106,8 @@ export class AddMoneyPage implements OnInit {
       });
   }
   orderPayment() {
+	  
+	 if(this.formData.amount>0){
     let mId = ""
 	
 	let amount = this.formData.amount;
@@ -147,6 +149,10 @@ export class AddMoneyPage implements OnInit {
 		  
 	  });
     });
+	 }
+	 else{
+		 this.shared.toast("Invalid Amount");
+	 }
   }
   
 

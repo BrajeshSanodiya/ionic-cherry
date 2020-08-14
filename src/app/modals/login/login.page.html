@@ -15,7 +15,7 @@
   <form #loginForm="ngForm" class="form" (ngSubmit)="openVerifyotp()">
     <ion-item>
       <ion-label position="floating">{{'Mobile No. For Login And SignUp'|translate}}</ion-label>
-      <ion-input type="text" name="mobile_no" [(ngModel)]="formData.mobile_no" maxlength="10" minlength="10" required>
+      <ion-input type="tel" inputmode="tel" name="mobile_no" [(ngModel)]="formData.mobile_no" maxlength="10" minlength="10" required>
       </ion-input>
     </ion-item>
 
@@ -38,10 +38,10 @@
     </ion-button>
 
   </form>
-
+<!--
   <ion-button expand="full" fill="clear" color="dark" (click)="openForgetPasswordPage()">{{ "I've forgotten my
       password?" | translate }}</ion-button>
-<!--
+
   <ion-button expand="full" *ngIf="config.fbButton==1" (click)="facebookLogin()">{{ 'Login with' | translate }}
     <ion-icon name="logo-facebook"></ion-icon>
   </ion-button>

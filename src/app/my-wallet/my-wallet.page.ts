@@ -33,7 +33,7 @@ export class MyWalletPage implements OnInit {
 
   refreshPage() {
     this.page = 1;
-    this.infinite.disabled = false;
+    //this.infinite.disabled = false;
     this.getOrders();
   }
   addCurrecny(order, v2) {
@@ -66,7 +66,7 @@ export class MyWalletPage implements OnInit {
       function (response) {
         this.loading.hide();
 
-        this.shared.toast("Server Error while Loading Orders");
+        this.shared.toast("Server Error while Loading Wallet Log");
         console.log(response);
       });
   };

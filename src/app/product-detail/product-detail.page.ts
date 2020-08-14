@@ -66,8 +66,10 @@ export class ProductDetailPage implements OnInit {
     private router: Router) {
 
     this.pId = this.activatedRoute.snapshot.paramMap.get('id');
+	
     this.product = JSON.parse(JSON.stringify(this.getProductData(this.pId)));
-    // console.log(this.product);
+	
+    //this.product = JSON.parse(JSON.stringify(this.getProductData(this.pId)));
     this.discount_price = this.product.discount_price;
     this.product_price = this.product.products_price;
     this.flash_price = this.product.flash_price;

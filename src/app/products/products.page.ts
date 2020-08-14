@@ -75,7 +75,7 @@ export class ProductsPage implements OnInit {
     dat.currency_code = this.config.currecnyCode;
     this.config.postHttp('getallproducts', dat).then((data: any) => {
       this.httpRunning = false;
-      // console.log(data.product_data.length + "   " + this.page);
+       console.log(data.product_data.length + "   " + this.page);
       this.infinite.complete();
       if (this.page == 0) { this.products = new Array; this.loading.hide(); this.scrollToTop(); }
       if (data.success == 1) {
