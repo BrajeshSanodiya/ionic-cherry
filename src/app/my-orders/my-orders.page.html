@@ -88,10 +88,14 @@
           </ion-col>
         </ion-row>
 		<ion-row >
-          <ion-col size="6">
-           <ion-button (click)="showOrderDetail(order)" fill="outline">View</ion-button>
+          <ion-col class="ion-text-right" size="4">
+           <ion-button  (click)="showOrderDetail(order)" fill="outline">View</ion-button>
           </ion-col>
-          <ion-col class="ion-text-right" size="6">
+		  <ion-col class="ion-text-right" size="4">
+<ion-button  *ngIf="order.order_status == '1'"
+(click)="cancelOrder(order.orders_id)" fill="outline">Cancel</ion-button>
+          </ion-col>
+          <ion-col class="ion-text-right" size="4">
 <ion-button  *ngIf="order.payment_status == '0' && order_order_status!=3" (click)="orderPayment(order.order_price,order.orders_id,order.wallet_deduct)" fill="outline">Pay</ion-button>
           </ion-col>
         </ion-row>

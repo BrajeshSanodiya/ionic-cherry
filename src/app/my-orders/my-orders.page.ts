@@ -100,6 +100,32 @@ export class MyOrdersPage implements OnInit {
 	  
   }
   
+  cancelOrder(order_id){
+	  
+	let cutomerId=0;
+    cutomerId = this.shared.customerData.customers_id;
+		  
+	this.loading.show();
+    this.config.getHttp("cancelOrder/"+order_id).then((data: any) => {
+      this.loading.hide();
+     
+	 
+        if (data.success == 1) {
+		  this.shared.toast("Order Canceled");
+		  this.ngOnInit();
+          this.navCtrl.navigateRoot(this.config.currentRoute + "/my-orders");
+        }
+        else {
+          this.shared.toast("Error");
+        }
+		  
+		  
+	  });
+    
+  
+	  
+  }
+  
    initializePaymentMethods() {
 	  
 	
