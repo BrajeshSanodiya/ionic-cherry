@@ -36,6 +36,7 @@
         <img src="{{config.imgUrl+b.image}}">
       </div>
     </ion-slide>
+	
   </ion-slides>
 
   <ion-grid class="product-detail-title">
@@ -119,7 +120,7 @@
         <ion-label>{{att.option.name}}</ion-label>
       </ion-list-header>
       <ion-item *ngFor=" let val of att.values; let i = index">
-        <ion-label>{{val.value+' '+val.price_prefix+val.price+' '+config.currency}}</ion-label>
+        <ion-label>{{val.value+' '+val.price_prefix+val.price+' ₹'}}</ion-label>
         <ion-radio slot="start" [value]="val">
         </ion-radio>
       </ion-item>

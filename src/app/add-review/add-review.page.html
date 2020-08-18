@@ -22,14 +22,14 @@
   <form>
     <ion-item lines="none">
       <ion-textarea rows="17" placeholder="{{'Enter a description'|translate}}" name="desc"
-        [(ngModel)]="formData.description" required></ion-textarea>
+        [(ngModel)]="formData.description"></ion-textarea>
     </ion-item>
   </form>
 
 
 </ion-content>
 <ion-footer>
-  <ion-button expand="full" color="secondary" (click)="addComment()" [disabled]="disbaleButton()">
+  <ion-button expand="full" color="secondary" (click)="addComment()">
     {{ 'Post Comment' | translate }}
   </ion-button>
 </ion-footer>
