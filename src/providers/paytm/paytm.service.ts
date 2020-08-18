@@ -23,6 +23,9 @@ export class PaytmService {
       var callBackUrl = paytmUrl + "/theia/paytmCallback?ORDER_ID=" + orderId;
 
       var completeUrl = paytmUrl+"/theia/api/v1/showPaymentPage?mid="+mId+"&orderId="+orderId;
+	  
+	  
+	  
       var pageContetn = `<html>
    <head>
       <title>Show Payment Page</title>
