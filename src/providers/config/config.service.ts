@@ -28,6 +28,7 @@ if (localStorage.langId == undefined) {
 
 export class ConfigService {
 
+  
   public yourSiteUrl: string = 'https://www.cherrians.com';//'https://www.150hypermart.in'; // 'https://www.cherrians.com';//'https://stage.cherrians.com';
   public consumerKey: string = "a23d1dee1587377148a2c738b9";
   public consumerSecret: string = "ea7e2beb1587377148a0448ad1";
