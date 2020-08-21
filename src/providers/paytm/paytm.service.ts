@@ -74,7 +74,7 @@ export class PaytmService {
       bb.on('loadstart').subscribe(res => {
         console.log(res.url);
         if (res.url == callBackUrl) {
-         this.config.getHttp("generatpaytmhashesfororder/"+orderId).then((data: any) => {
+         this.config.getHttp("generatpaytmhashesfororder/"+orderId+"/"+customerId).then((data: any) => {
             this.loading.hide();
             console.log("---------------- payment sucess ---------------");
             bb.close();

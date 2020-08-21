@@ -462,7 +462,8 @@ export class AppComponent {
       });
     }
 
-    tempArray.forEach((v: any, index) => {
+     tempArray.forEach((v: any, index) => {
+	 
       if (this.config.wishListPage == 0 && v.value == "wishListPage") { tempArray.splice(index, 1); }
       if (this.config.editProfilePage == 0 && v.value == "editPage") { tempArray.splice(index, 1); }
       if (this.config.contactUsPage == 0 && v.value == "contactPage") { tempArray.splice(index, 1); }

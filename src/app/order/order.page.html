@@ -68,8 +68,8 @@
           </ion-row>
 
           <ion-row *ngFor="let att of product.attributes">
-            <ion-col size="6">{{att.products_options_values+'&nbsp;'+att.products_options}}&nbsp;:</ion-col>
-            <ion-col size="6">{{att.price_prefix +'&nbsp;'+ att.options_values_price+'&nbsp;₹'}}</ion-col>
+            <ion-col class="ion-text-left" size="6">{{att.products_options_values+'&nbsp;'+att.products_options}}&nbsp;:</ion-col>
+            <ion-col class="ion-text-right" size="6">{{att.price_prefix +'&nbsp;'+ att.options_values_price+'&nbsp;₹'}}</ion-col>
           </ion-row>
 
           <ion-row>
@@ -326,6 +326,9 @@
   </ion-button>
   <ion-button expand="full" *ngIf="orderDetail.payment_method=='paytm'" class="button-footer" color="secondary"
     (click)="paytmPayment()">{{'Continue'|translate}}
+  </ion-button>
+  <ion-button expand="full" *ngIf="orderDetail.payment_method=='googlepay'" class="button-footer" color="secondary"
+    (click)="googlePayment()">{{'Continue'|translate}}
   </ion-button>
   <ion-button expand="full" class="button-footer" color="secondary" (click)="instamojoPayment()"
     *ngIf="orderDetail.payment_method=='instamojo'">{{'Continue'|translate}}</ion-button>

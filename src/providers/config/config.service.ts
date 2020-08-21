@@ -56,7 +56,7 @@ export class ConfigService {
   public loader = 'dots';
   public newProductDuration = 10;
   public cartButton = 1;//1 = show and 0 = hide
-  public currency = localStorage.currency;
+  public currency = "₹";
   public currencyPos = localStorage.currencyPos;
   public paypalCurrencySymbol = localStorage.currency;
   public address;
