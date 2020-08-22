@@ -25,11 +25,13 @@
         <ion-toolbar (click)="click()">
           <ion-title>{{ 'Menu' | translate }}</ion-title>
           <ion-buttons slot="end">
-          <!--
-			<ion-button fill="clear" (click)="openWalletPage()">
-              <ion-icon slot="icon-only" name="wallet-outline">Wallet</ion-icon>
+          
+			<ion-button fill="clear" href="https://wa.me/{{config.phoneNo}}?text=Hello%20World">
+              <ion-icon slot="icon-only" name="wallet-outline" ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
             </ion-button>
-			-->
+		
+			
+			
             <ion-button fill="clear" (click)="openLanguagePage()">
               <ion-icon name="globe"></ion-icon>
             </ion-button>
