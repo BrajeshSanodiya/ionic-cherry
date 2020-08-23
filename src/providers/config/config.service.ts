@@ -217,6 +217,7 @@ export class ConfigService {
           this.getSettingsFromServer().then((data: any) => {
             if (data.success == "1") {
               this.appSettings = data.data;
+			  this.appTheme='plum';
               this.storage.set("appSettings", this.appSettings);
               this.defaultSettings();
               this.appEventsService.publish('settingsLoaded', "");
@@ -260,6 +261,7 @@ export class ConfigService {
       this.setBannerStyle(this.appSettings.banner_style);
 
     this.siteUrl = this.appSettings.site_url;
+	this.appTheme=this.appSettings.app_theme;
     this.introPage = this.appSettings.intro_page;
     this.myOrdersPage = this.appSettings.my_orders_page;
     this.newsPage = this.appSettings.news_page;

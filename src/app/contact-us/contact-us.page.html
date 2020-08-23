@@ -47,7 +47,9 @@
 
         <ion-label>
           <p>
-            {{config.phoneNo}}
+            <ion-button fill="clear" href="https://wa.me/+91{{config.phoneNo}}?text=">
+             {{config.phoneNo}}
+            </ion-button>
           </p>
         </ion-label>
       </ion-item>
