@@ -37,7 +37,7 @@ export class BannerComponent implements OnInit {
   bannerClick = function (image) {
 	  
 	 
-    if (image.type == 'category') {
+    if (image.type == 'category' || image.type =='categoryparent') {
 		
       this.navCtrl.navigateForward("tabs/" + this.config.getCurrentHomePage() + "/products/" + image.url + "/0/newest");
     }

@@ -13,12 +13,10 @@
     <ion-radio-group name="radio-group" (ionChange)="setMethod($event)">
       <div *ngFor="let m of shippingMethod">
         <div *ngIf="m.services.length!=0">
-          <ion-list-header>
-            {{m.name}}
-          </ion-list-header>
+         
 
           <ion-item lines="full" *ngFor="let s of m.services">
-            <ion-label>{{s.name+' ---- '+s.rate+' '+s.currencyCode}}</ion-label>
+            <ion-label>{{'₹ '+s.name+' ---- '+s.rate}}</ion-label>
             <ion-radio name="{{s.name}}" [value]="s"></ion-radio>
           </ion-item>
         </div>
