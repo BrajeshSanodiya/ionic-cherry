@@ -1,9 +1,13 @@
 <ion-app [class.green-theme]="config.appTheme=='green'" [class.plum-theme]="config.appTheme=='plum'"
   [class.magnesium-theme]="config.appTheme=='magnesium'" [class.salmon-theme]="config.appTheme=='salmon'"
   [class.blue-theme]="config.appTheme=='blue'" [class.pink-theme]="config.appTheme=='pink'"
-  [class.orange-theme]="config.appTheme=='orange'" [class.maroon-theme]="config.appTheme=='maroon'"
-  [class.cayanne-theme]="config.appTheme=='cayanne'" [class.red-theme]="config.appTheme=='red'"
+  [class.orange-theme]="config.appTheme=='orange'" [class.orange-theme]="config.appTheme=='orange'"
+  [class.red-theme]="config.appTheme=='red'" [class.red-theme]="config.appTheme=='red'"
   [class.sea-theme]="config.appTheme=='sea'" [class.sky-theme]="config.appTheme=='sky'"
+  [class.green-theme]="config.appTheme=='green'" [class.green-theme]="config.appTheme=='green'"
+  [class.blue-theme]="config.appTheme=='blue'" [class.blue-theme]="config.appTheme=='blue'"
+  [class.maroon-theme]="config.appTheme=='maroon'" [class.maroon-theme]="config.appTheme=='maroon'"
+  [class.cayanne-theme]="config.appTheme=='cayanne'" [class.cayanne-theme]="config.appTheme=='cayanne'"
   [class.grape-theme]="config.appTheme=='grape'" [class.dark-theme]="config.darkMode==true"
   [class.light-theme]="config.darkMode==false" [class.default-theme]="config.appTheme=='default'"
   [class.white-theme]="config.appTheme=='white'" [class.hypermart-theme]="config.appTheme=='hypermart'"
@@ -25,11 +29,11 @@
         <ion-toolbar (click)="click()">
           <ion-title>{{ 'Menu' | translate }}</ion-title>
           <ion-buttons slot="end">
-          <!--
-			<ion-button fill="clear" (click)="openWalletPage()">
-              <ion-icon slot="icon-only" name="wallet-outline">Wallet</ion-icon>
-            </ion-button>
-			-->
+          
+			
+		
+			
+			
             <ion-button fill="clear" (click)="openLanguagePage()">
               <ion-icon name="globe"></ion-icon>
             </ion-button>

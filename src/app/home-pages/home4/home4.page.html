@@ -11,6 +11,9 @@
       <ion-button fill="clear" routerLink="/search" routerDirection="forward">
         <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
+	  <ion-button fill="clear" href="https://wa.me/+91{{config.phoneNo}}?text=">
+              <ion-icon slot="icon-only" name="wallet-outline" ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
+      </ion-button>
       <ion-button fill="clear" routerLink="/cart" routerDirection="forward">
         <ion-icon name="basket"></ion-icon>
         <ion-badge color="secondary">{{shared.cartTotalItems()}}</ion-badge>
@@ -37,13 +40,15 @@
           
             <img *ngIf="c.image" src="{{config.imgUrl+c.image}}" />
          
-		  <!--
-          <ion-text>
-            <h6>{{c.name|translate}}</h6>
-            <p>{{c.count}} {{'Products'| translate }}</p>
-          </ion-text>
-		  -->
+		    
+          
+		  
         </ion-card>
+		
+		<ion-text>
+            <h4>{{c.name|translate}}</h4>
+            <p>{{c.total_products}} {{'Products'| translate }}</p>
+        </ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>

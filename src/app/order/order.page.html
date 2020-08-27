@@ -219,7 +219,7 @@
           <ion-select interface="popover" [(ngModel)]="orderDetail.payment_method" (ionChange)=" paymentMehodChanged()"
             okText="{{'ok'|translate}}" cancelText="{{'Cancel'|translate}}">
             <div *ngFor="let p of paymentMethods">
-              <ion-select-option *ngIf="p.active==1" [value]="p.method">{{p.name}}</ion-select-option>
+              <ion-select-option [value]="p.method" [disabled]="p.disable == '1' || p.disable == 'true'" >{{p.name}}</ion-select-option>
             </div>
           </ion-select>
         </ion-item>
