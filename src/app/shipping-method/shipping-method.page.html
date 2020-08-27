@@ -16,7 +16,7 @@
          
 
           <ion-item lines="full" *ngFor="let s of m.services">
-            <ion-label>{{'₹ '+s.name+' ---- '+s.rate}}</ion-label>
+            <ion-label>{{s.name+' ---- ₹'+s.rate}}</ion-label>
             <ion-radio name="{{s.name}}" [value]="s"></ion-radio>
           </ion-item>
         </div>

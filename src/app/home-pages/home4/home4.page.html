@@ -40,13 +40,15 @@
           
             <img *ngIf="c.image" src="{{config.imgUrl+c.image}}" />
          
-		  <!--
-          <ion-text>
-            <h6>{{c.name|translate}}</h6>
-            <p>{{c.count}} {{'Products'| translate }}</p>
-          </ion-text>
-		  -->
+		    
+          
+		  
         </ion-card>
+		
+		<ion-text>
+            <h4>{{c.name|translate}}</h4>
+            <p>{{c.total_products}} {{'Products'| translate }}</p>
+        </ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>
