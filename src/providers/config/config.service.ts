@@ -217,7 +217,7 @@ export class ConfigService {
           this.getSettingsFromServer().then((data: any) => {
             if (data.success == "1") {
               this.appSettings = data.data;
-			  this.appTheme='plum';
+			 
               this.storage.set("appSettings", this.appSettings);
               this.defaultSettings();
               this.appEventsService.publish('settingsLoaded', "");
