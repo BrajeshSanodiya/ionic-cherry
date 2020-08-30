@@ -19,6 +19,7 @@ export class MyWalletPage implements OnInit {
   walletbalance=0;
   orders = new Array;
   httpRunning = true;
+  
   paytmS: any;
   constructor(
     public navCtrl: NavController,
@@ -41,6 +42,9 @@ export class MyWalletPage implements OnInit {
   }
 
   ngOnInit() {
+	
+	
+	
     this.httpRunning = true;
     this.getOrders();
 	this.initializePaymentMethods();
