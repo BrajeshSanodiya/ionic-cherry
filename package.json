@@ -50,7 +50,6 @@
     "@ionic/angular": "^5.0.4",
     "@ionic/storage": "^2.2.0",
     "braintree-web": "^3.62.1",
-    "com-darryncampbell-cordova-plugin-intent": "^2.0.0",
     "com-sarriaroman-photoviewer": "^1.2.4",
     "com.razorpay.cordova": "^1.4.10",
     "cordova-android": "^8.1.0",
@@ -104,8 +103,6 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
-    "cordova-plugin-browsertab": "^0.2.0",
-    "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-google-analytics": "^1.9.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -160,8 +157,6 @@
       },
       "cordova-plugin-googleplus": {},
       "onesignal-cordova-plugin": {},
-      "com-darryncampbell-cordova-plugin-intent": {},
-      "cordova-plugin-browsertab": {},
       "cordova-plugin-google-analytics": {}
     },
     "platforms": [
