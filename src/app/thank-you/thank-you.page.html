@@ -18,8 +18,8 @@
       <ion-icon name="checkmark-circle"></ion-icon>
       <h3>{{'Thank You'| translate }}</h3>
       <h4>{{'Thank you for shopping with us.'| translate }}</h4>
-	 <ion-row *ngIf="timee>'17:00:00' && timee<'06:00:00'"> <h6>{{'Your order will  be delivered by tomorrow before 12:00 pm .'| translate }}</h6></ion-row>
-	   <ion-row *ngIf="timee<'17:00:00' && timee>'06:00:00'"><h6 >{{'Your order will  be delivered with in 2-4 hours .'| translate }}</h6>      </ion-row>
+	 <ion-row *ngIf="timee>'17:00:00'"> <h6>{{'Your order will  be delivered by tomorrow before 12:00 pm .'| translate }}</h6></ion-row>
+	   <ion-row *ngIf="timee<'17:00:00'"><h6 >{{'Your order will  be delivered with in 2-4 hours .'| translate }}</h6>      </ion-row>
       <ion-button expand="block" color="secondary" *ngIf="shared.customerData.customers_id!=null"
         (click)="openOrders()">
         {{'My Orders'| translate }}</ion-button>

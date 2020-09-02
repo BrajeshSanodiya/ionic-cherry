@@ -10,6 +10,7 @@ import { AppEventsService } from 'src/providers/app-events/app-events.service';
 import { NetworkInterface } from '@ionic-native/network-interface/ngx';
 import { GetIpAddressService } from '../get-ip-Address/get-ip-address.service';
 import { GetDeviceIdService } from '../get-device-id/get-device-id.service';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
 if (localStorage.langId == undefined) {
 
@@ -111,12 +112,22 @@ export class ConfigService {
     public appEventsService: AppEventsService,
     private httpNative: HTTP,
     public getIpAddressService: GetIpAddressService,
-    public getDeviceIdService: GetDeviceIdService
+    public getDeviceIdService: GetDeviceIdService,
+	private ga: GoogleAnalytics
 
   ) {
     this.setUserSettings();
     this.consumerKey = Md5.hashStr(this.consumerKey).toString();
     this.consumerSecret = Md5.hashStr(this.consumerSecret).toString();
+    
+	this.ga.startTrackerWithId('UA-164323626-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+      this.ga.trackView('227810086');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
 
     if (this.appNavigationTabs == false)
       this.currentRoute = "";

@@ -5,7 +5,7 @@ import { SharedDataService } from 'src/providers/shared-data/shared-data.service
 import { LoadingService } from 'src/providers/loading/loading.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
-
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { HttpClient } from '@angular/common/http';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Storage } from '@ionic/storage';
@@ -62,9 +62,18 @@ export class ProductDetailPage implements OnInit {
     private storage: Storage,
     private photoViewer: PhotoViewer,
     private socialSharing: SocialSharing,
+    private ga: GoogleAnalytics,
     private activatedRoute: ActivatedRoute,
     private router: Router) {
-
+    
+      this.ga.startTrackerWithId('UA-164323626-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+      this.ga.trackView('227810086');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
     this.pId = this.activatedRoute.snapshot.paramMap.get('id');
 	
     this.product = JSON.parse(JSON.stringify(this.getProductData(this.pId)));

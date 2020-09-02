@@ -10,6 +10,7 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
 import { Stripe } from '@ionic-native/stripe/ngx';
 import { PaytmService } from 'src/providers/paytm/paytm.service';
 import { HTTP } from '@ionic-native/http/ngx';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
 declare var Instamojo: any;
 declare var braintree;
@@ -61,9 +62,19 @@ export class OrderPage implements OnInit {
     public platform: Platform,
     public paytmService: PaytmService,
     private payPal: PayPal,
+    private ga: GoogleAnalytics,
     private httpNative: HTTP,
     private stripe: Stripe,) {
 
+
+      this.ga.startTrackerWithId('UA-164323626-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+      this.ga.trackView('227810086');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
   }
 
   //============================================================================================  

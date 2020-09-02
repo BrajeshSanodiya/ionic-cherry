@@ -29,6 +29,7 @@
     "@ionic-native/facebook": "^5.27.0",
     "@ionic-native/fcm": "^5.15.0",
     "@ionic-native/geolocation": "^5.12.0",
+    "@ionic-native/google-analytics": "^5.28.0",
     "@ionic-native/google-maps": "^5.5.0",
     "@ionic-native/google-plus": "^5.0.0-beta.14",
     "@ionic-native/http": "^5.12.0",
@@ -102,6 +103,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cordova-plugin-google-analytics": "^1.9.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -149,10 +151,13 @@
       "cordova-plugin-uniquedeviceid": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "789244894943912",
-        "APP_NAME": "Cherry Basket"
+        "APP_NAME": "Cherry Basket",
+        "FACEBOOK_HYBRID_APP_EVENTS": "false",
+        "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
       },
       "cordova-plugin-googleplus": {},
-      "onesignal-cordova-plugin": {}
+      "onesignal-cordova-plugin": {},
+      "cordova-plugin-google-analytics": {}
     },
     "platforms": [
       "android",

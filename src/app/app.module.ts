@@ -58,6 +58,7 @@ import { AuthGuardService } from 'src/providers/auth-guard/auth-guard.service';
 import { GetIpAddressService } from 'src/providers/get-ip-Address/get-ip-address.service';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { BackButtonExitAppService } from 'src/providers/back-button-exit/back-button-exit-app.service';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,6 +121,7 @@ import { BackButtonExitAppService } from 'src/providers/back-button-exit/back-bu
     GetIpAddressService,
     GetDeviceIdService,
     UniqueDeviceID,
+	GoogleAnalytics,
     BackButtonExitAppService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
