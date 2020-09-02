@@ -1,6 +1,6 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
 
-
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { ConfigService } from 'src/providers/config/config.service';
 import { SharedDataService } from 'src/providers/shared-data/shared-data.service';
 import { NavController, ModalController, ActionSheetController } from '@ionic/angular';
@@ -26,8 +26,19 @@ export class CartPage implements OnInit {
     public modalCtrl: ModalController,
     private applicationRef: ApplicationRef,
     public couponProvider: CouponService,
+    private ga: GoogleAnalytics,
     public actionSheetCtrl: ActionSheetController,
   ) {
+
+    this.ga.startTrackerWithId('UA-164323626-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+      this.ga.trackView('227810086');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
+
   }
   totalPrice() {
     var price = 0;
