@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { SharedDataService } from 'src/providers/shared-data/shared-data.service';
 import { ConfigService } from 'src/providers/config/config.service';
 import { AppEventsService } from 'src/providers/app-events/app-events.service';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
 @Component({
   selector: 'app-thank-you',
@@ -16,8 +17,18 @@ export class ThankYouPage implements OnInit {
     public navCtrl: NavController,
     public shared: SharedDataService,
     public config: ConfigService,
+    private ga: GoogleAnalytics,
     public appEventsService: AppEventsService,
   ) {
+
+    this.ga.startTrackerWithId('UA-164323626-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+      this.ga.trackView('227810086');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
   }
   openHome() {
     if (this.config.appNavigationTabs)

@@ -5,7 +5,7 @@ import { ConfigService } from 'src/providers/config/config.service';
 import { SharedDataService } from 'src/providers/shared-data/shared-data.service';
 import { LoadingService } from 'src/providers/loading/loading.service';
 import { AppEventsService } from 'src/providers/app-events/app-events.service';
-
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
 @Component({
   selector: 'app-products',
@@ -45,8 +45,18 @@ export class ProductsPage implements OnInit {
     public loading: LoadingService,
     public appEventsService: AppEventsService,
     public actionSheet: ActionSheetController,
+    private ga: GoogleAnalytics,
     public menuCtrl: MenuController
   ) {
+
+    this.ga.startTrackerWithId('UA-164323626-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+      this.ga.trackView('227810086');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
     if (shared.dir == "rtl") this.side = "left";
 
     if (this.activatedRoute.snapshot.paramMap.get('id') != undefined) this.selectedTab = this.categoryId = this.activatedRoute.snapshot.paramMap.get('id');

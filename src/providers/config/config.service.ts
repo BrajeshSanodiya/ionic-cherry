@@ -119,11 +119,11 @@ export class ConfigService {
     this.setUserSettings();
     this.consumerKey = Md5.hashStr(this.consumerKey).toString();
     this.consumerSecret = Md5.hashStr(this.consumerSecret).toString();
-	
+    
 	this.ga.startTrackerWithId('UA-164323626-1')
    .then(() => {
      console.log('Google analytics is ready now');
-      this.ga.trackView('Cherry Basket');
+      this.ga.trackView('227810086');
      // Tracker is ready
      // You can now track pages or set additional information such as AppVersion or UserId
    })
