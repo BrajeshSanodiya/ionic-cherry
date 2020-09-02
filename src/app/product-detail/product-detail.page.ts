@@ -95,9 +95,10 @@ export class ProductDetailPage implements OnInit {
         value.name = value.values[0];
         this.attributes.push(att);
       });
-      this.checkAvailability();
+      
       console.log(this.attributes);
     }
+	this.checkAvailability();
   }
   zoomImage(img) {
     this.photoViewer.show(img);

@@ -11,7 +11,7 @@ import { AppEventsService } from 'src/providers/app-events/app-events.service';
 })
 export class ThankYouPage implements OnInit {
 
-
+  public timee="";
   constructor(
     public navCtrl: NavController,
     public shared: SharedDataService,
@@ -35,6 +35,7 @@ export class ThankYouPage implements OnInit {
     this.navCtrl.navigateRoot("tabs/cart");
   }
   ngOnInit() {
+	  this.timee= new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds();
   }
   ionViewDidEnter() {
     this.shared.emptyCart();
