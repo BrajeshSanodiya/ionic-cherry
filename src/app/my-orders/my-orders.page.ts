@@ -16,7 +16,8 @@ export class MyOrdersPage implements OnInit {
   @ViewChild(IonInfiniteScroll, { static: false }) infinite: IonInfiniteScroll;
   paymentMethods = [];
   page = 0;
-  orders: any = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  orders: any = [];
+  orders1:any =[];
   loadingServerData = false;
   walletbalance=0;
   httpRunning = true;
@@ -33,8 +34,12 @@ export class MyOrdersPage implements OnInit {
   }
 
   refreshPage() {
-    this.page = 1;
-    this.infinite.disabled = false;
+	
+	/* this.orders= this.orders1;
+	this.httpRunning = false;
+    
+    this.infinite.disabled = false; */
+	this.page = 0;
     this.getOrders();
   }
   addCurrecny(order, v2) {
@@ -72,8 +77,9 @@ export class MyOrdersPage implements OnInit {
       if (data.success == 1) {
 		  
 		let dataa = data.data;
-        if (this.page == 0) {
+         if (this.page == 0) {
         this.orders = new Array;
+		this.orders1=data.data;
          }
 		if (dataa.length != 0) {
         this.page++;
@@ -135,8 +141,7 @@ export class MyOrdersPage implements OnInit {
 	 
         if (data.success == 1) {
 		  this.shared.toast("Order Canceled");
-		  this.ngOnInit();
-          this.navCtrl.navigateRoot(this.config.currentRoute + "/my-orders");
+		  this.refreshPage();
         }
         else {
           this.shared.toast("Error");

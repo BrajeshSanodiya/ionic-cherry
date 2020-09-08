@@ -959,7 +959,7 @@
         <p (click)="showProductDetail()">{{p.products_name}}</p>
         <p class="list-price-normal" *ngIf="p.discount_price==null">{{p.products_price|curency}}</p>
         <p class="list-price-normal" *ngIf="p.discount_price!=null">
-          <del>{{p.products_price|curency}}</del>{{p.discount_price|curency}}</p>
+          <del>{{p.products_price|curency}}</del>&nbsp;<span style="color:red;">{{p.discount_price|curency}}</span></p>
         <ion-row>
           <ion-col>
             <ion-button color="secondary" *ngIf="config.cartButton==1 && p.defaultStock>0 && p.products_type==0"
