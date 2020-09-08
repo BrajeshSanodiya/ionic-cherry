@@ -39,7 +39,7 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)" id="productContent">
-  <ion-grid *ngIf="productView=='grid'" class="ion-no-padding">
+  <ion-grid *ngIf="productView=='list'" class="ion-no-padding">
     <ion-row class="ion-no-padding">
       <ion-col *ngFor="let p of products" size="6" class="ion-no-padding">
         <app-product [data]="p" [type]="'normal'"></app-product>
@@ -47,7 +47,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list class="list-view" *ngIf="productView=='list'">
+  <ion-list class="list-view" *ngIf="productView=='grid'">
     <span *ngFor="let p of products">
       <app-product [data]="p" [type]="'list'"></app-product>
     </span>
@@ -80,7 +80,7 @@
 
     <ion-buttons slot="end" color="light">
       <ion-button (click)="changeLayout()">
-        <ion-icon name="ios-list" [name]="productView=='grid'? 'list' : 'apps'"></ion-icon>
+        <ion-icon name="ios-list" [name]="productView=='grid'? 'apps' : 'list'"></ion-icon>
       </ion-button>
       <ion-button (click)="removeFilters()" *ngIf="applyFilter">
         <ion-icon name="refresh"></ion-icon>
