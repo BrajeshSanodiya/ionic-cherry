@@ -16,7 +16,7 @@ export class MyOrdersPage implements OnInit {
   @ViewChild(IonInfiniteScroll, { static: false }) infinite: IonInfiniteScroll;
   paymentMethods = [];
   page = 0;
-  orders: any = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  orders: any = [];
   loadingServerData = false;
   walletbalance=0;
   httpRunning = true;
@@ -72,7 +72,7 @@ export class MyOrdersPage implements OnInit {
       if (data.success == 1) {
 		  
 		let dataa = data.data;
-        if (this.page == 0) {
+         if (this.page == 0) {
         this.orders = new Array;
          }
 		if (dataa.length != 0) {
