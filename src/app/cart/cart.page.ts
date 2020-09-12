@@ -77,11 +77,12 @@ export class CartPage implements OnInit {
     q.total = q.subtotal;
     if (q.customers_basket_quantity > q.quantity) {
       q.customers_basket_quantity--;
-      this.shared.toast('Product Quantity is Limited!', 'short', 'center');
+      this.shared.toast('Product Quantity is Limited!');
     }
     this.totalPrice();
     this.shared.cartTotalItems();
     this.storage.set('cartProducts', this.shared.cartProducts);
+	console.log(q.quantity);
   }
   //function decreasing the quantity
   qunatityMinus = function (q) {

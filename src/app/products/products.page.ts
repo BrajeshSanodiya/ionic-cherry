@@ -31,7 +31,7 @@ export class ProductsPage implements OnInit {
   price = { lower: 0, upper: 500 };
   maxAmount = 500;
   side = "right";
-  productView = 'grid';
+  productView = 'list';
   httpRunning = true;
   sliderConfig = {
     slidesPerView: "auto"
@@ -229,6 +229,7 @@ export class ProductsPage implements OnInit {
     this.menuCtrl.toggle("menu2");
   }
   changeLayout() {
+	 
     if (this.productView == 'list') this.productView = "grid";
     else this.productView = "list";
 

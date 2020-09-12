@@ -74,6 +74,11 @@ export class ConfigService {
   public footerShowHide;
   public homePage = 1;
   public categoryPage = 1;
+  public newestPro = 1;
+  public recentPro = 1;
+  public onsalePro = 1;
+  public featPro = 1;
+  public allPro = 1;
   public siteUrl = '';
   public appName = '';
   public packgeName = "";
@@ -86,6 +91,7 @@ export class ConfigService {
   public contactUsPage = 1;
   public editProfilePage = 1;
   public settingPage = 1;
+  public categoryLable = 0;
   public admob = 1;
   public admobBannerid = '';
   public admobIntid = '';
@@ -221,6 +227,8 @@ export class ConfigService {
       }
     });
   }
+  
+
   public siteSetting() {
     return new Promise(resolve => {
       this.storage.get('appSettings').then((val) => {
@@ -263,7 +271,13 @@ export class ConfigService {
     this.footerShowHide = this.appSettings.footer_button;
     this.setLocalNotification();
     this.appName = this.appSettings.app_name;
+	this.newestPro = this.appSettings.newset_product;
+    this.recentPro = this.appSettings.recenlty_viewd;
+    this.onsalePro = this.appSettings.on_sale;
+    this.featPro = this.appSettings.featured_product;
     this.homePage = this.appSettings.home_style;
+	this.allPro  =this.appSettings.all_product;
+	//this.homePage = 4;
     this.categoryPage = this.appSettings.category_style;
 
     if (this.appSettings.card_style)
@@ -284,6 +298,7 @@ export class ConfigService {
     this.packgeName = this.appSettings.package_name;
     this.settingPage = this.appSettings.setting_page;
     this.admob = this.appSettings.admob;
+	this.categoryLable=this.appSettings.lable_show;
     this.admobBannerid = this.appSettings.ad_unit_id_banner;
     this.admobIntid = this.appSettings.ad_unit_id_interstitial;
     this.googleAnalaytics = this.appSettings.google_analytic_id;

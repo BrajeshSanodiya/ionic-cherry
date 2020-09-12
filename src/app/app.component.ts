@@ -100,10 +100,11 @@ export class AppComponent {
     { name: 'Contact Us', icon: 'call', img: 'assets/left-menu-icon/phone.png', url: '/contact-us', value: 'contactPage' },
     { name: 'About Us', icon: 'information-circle', img: 'assets/left-menu-icon/about.png', url: '/about-us', value: 'aboutUsPage' },
     { name: 'News', icon: 'newspaper', img: 'assets/left-menu-icon/news.png', url: '/news', value: 'newsPage' },
+
     { name: 'Share', icon: 'share', img: 'assets/left-menu-icon/share.png', url: 'share', value: 'sharePage' },
     { name: 'Rate Us', icon: 'star-half', img: 'assets/left-menu-icon/rating.png', url: 'rateUs', value: 'ratePage' },
-    { name: 'Settings', icon: 'settings', img: 'assets/left-menu-icon/setting.png', url: '/settings', value: 'settingsPage' },
-	  { name: 'Intro', icon: 'logo-ionic', img: 'assets/left-menu-icon/intro.png', url: '/intro', value: 'introPage' },
+    { name: 'Settings', icon: 'settings', img: 'assets/left-menu-icon/setting.png', url: '/settings', value: 'settingsPage' }
+	
   ];
   a4 = [
     { name: 'My Wish List', icon: 'heart', img: 'assets/left-menu-icon/wishlist.png', url: '/wish-list', value: 'wishListPage' },
@@ -457,25 +458,30 @@ export class AppComponent {
     }
     else {
       this.a4.forEach((v: any, index) => {
-       
-        tempArray.push(v);
+
+        if(this.config.introPage == 0 && v.value == "introPage"){
+
+        }
+        else{
+          tempArray.push(v);
+        }
+        
       });
     }
 
      tempArray.forEach((v: any, index) => {
-      
+	 
       if (this.config.wishListPage == 0 && v.value == "wishListPage") { tempArray.splice(index, 1); }
       if (this.config.editProfilePage == 0 && v.value == "editPage") { tempArray.splice(index, 1); }
       if (this.config.contactUsPage == 0 && v.value == "contactPage") { tempArray.splice(index, 1); }
       if (this.config.aboutUsPage == 0 && v.value == "aboutUsPage") { tempArray.splice(index, 1); }
       if (this.config.newsPage == 0 && v.value == "newsPage") { tempArray.splice(index, 1); }
-      if (this.config.introPage == 0 && v.value == "introPage") { tempArray.splice(index, 1); }
+     // if (this.config.introPage == 0 && v.value == "introPage") { tempArray.splice(index, 1); }
       if (this.config.shareApp == 0 && v.value == "sharePage") { tempArray.splice(index, 1); }
       if (this.config.rateApp == 0 && v.value == "ratePage") { tempArray.splice(index, 1); }
       if (this.config.settingPage == 0 && v.value == "settingsPage") { tempArray.splice(index, 1); }
       if (this.config.myOrdersPage == 0 && v.value == "myOrdersPage") { tempArray.splice(index, 1); }
     });
-    
     this.appPages = tempArray;
     return tempArray;
   }

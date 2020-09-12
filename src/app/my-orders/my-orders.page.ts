@@ -15,9 +15,11 @@ export class MyOrdersPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll, { static: false }) infinite: IonInfiniteScroll;
   paymentMethods = [];
-  page = 1;
+  page = 0;
+  orders: any = [];
+  orders1:any =[];
+  loadingServerData = false;
   walletbalance=0;
-  orders = new Array;
   httpRunning = true;
   paytmS: any;
   constructor(
@@ -32,8 +34,12 @@ export class MyOrdersPage implements OnInit {
   }
 
   refreshPage() {
-    this.page = 1;
-    this.infinite.disabled = false;
+	
+	/* this.orders= this.orders1;
+	this.httpRunning = false;
+    
+    this.infinite.disabled = false; */
+	this.page = 0;
     this.getOrders();
   }
   addCurrecny(order, v2) {
@@ -41,26 +47,49 @@ export class MyOrdersPage implements OnInit {
   }
 
   ngOnInit() {
-    this.httpRunning = true;
+    //this.httpRunning = true;
     this.getOrders();
 	this.initializePaymentMethods();
   }
 
   getOrders() {
-    this.httpRunning = true;
-    this.orders = [];
-    this.loading.show();
+	  
+	 if (this.loadingServerData) return 0;
+    if (this.page == 0) {
+
+      this.loading.show();
+      this.loadingServerData = false;
+    }
+    this.loadingServerData = true;
+    //this.httpRunning = true;
+  
+    
     var dat: { [k: string]: any } = {};
     dat.customers_id = this.shared.customerData.customers_id;
     dat.language_id = this.config.langId;
+	dat.page_number = this.page;
     dat.currency_code = this.config.currecnyCode;
     this.config.postHttp('getorders', dat).then((data: any) => {
       this.loading.hide();
-      this.httpRunning = false;
+      //this.httpRunning = false;
+	  this.infinite.complete();
       //$rootScope.address=response.data.data;
       if (data.success == 1) {
-        this.orders = [];
-        this.orders = data.data;
+		  
+		let dataa = data.data;
+         if (this.page == 0) {
+        this.orders = new Array;
+		this.orders1=data.data;
+         }
+		if (dataa.length != 0) {
+        this.page++;
+        for (let value of dataa) {
+          this.orders.push(value);
+        }
+        }
+		this.page++;
+		if (dataa.length == 0) { this.infinite.disabled = true; }
+         this.loadingServerData = false;
 		
       }
       // $scope.$broadcast('scroll.refreshComplete');
@@ -112,8 +141,7 @@ export class MyOrdersPage implements OnInit {
 	 
         if (data.success == 1) {
 		  this.shared.toast("Order Canceled");
-		  this.ngOnInit();
-          this.navCtrl.navigateRoot(this.config.currentRoute + "/my-orders");
+		  this.refreshPage();
         }
         else {
           this.shared.toast("Error");

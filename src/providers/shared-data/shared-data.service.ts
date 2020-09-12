@@ -17,6 +17,9 @@ import { AppEventsService } from 'src/providers/app-events/app-events.service';
 export class SharedDataService {
 
   public banners = [];
+  public banners2 = [];
+  public banners3 = [];
+  public banners4 = [];
   public tab1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   public tab2 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   public tab3 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -141,6 +144,15 @@ export class SharedDataService {
     //getting all banners
     this.config.getHttp('getbanners?languages_id=' + this.config.langId).then((data: any) => {
       this.banners = data.data;
+    });
+	this.config.getHttp('getbanners2?languages_id=' + this.config.langId).then((data: any) => {
+      this.banners2 = data.data;
+    });
+	this.config.getHttp('getbanners3?languages_id=' + this.config.langId).then((data: any) => {
+      this.banners3 = data.data;
+    });
+	this.config.getHttp('getbanners4?languages_id=' + this.config.langId).then((data: any) => {
+      this.banners4 = data.data;
     });
     //getting tab 1
     let data: { [k: string]: any } = {};
@@ -272,7 +284,8 @@ export class SharedDataService {
       categories: product.categories,
       // categories_id: product.categories_id,
       // categories_name: product.categories_name,
-      // quantity: product.products_quantity,
+      quantity: product.defaultStock,
+	  defaultStock: product.defaultStock,
       weight: product.products_weight,
       on_sale: on_sale,
       unit: product.products_weight_unit,

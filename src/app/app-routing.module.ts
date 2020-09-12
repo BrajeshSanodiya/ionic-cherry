@@ -81,6 +81,7 @@ const routes: Routes = [
   { path: 'home8', loadChildren: './home-pages/home8/home8.module#Home8PageModule' },
   { path: 'home9', loadChildren: './home-pages/home9/home9.module#Home9PageModule' },
   { path: 'home10', loadChildren: './home-pages/home10/home10.module#Home10PageModule' },
+  { path: 'home11', loadChildren: './home-pages/home11/home11.module#Home11PageModule' },
   {
     path: 'my-order-detail', loadChildren: './my-order-detail/my-order-detail.module#MyOrderDetailPageModule',
     canActivate: [AuthGuard]
