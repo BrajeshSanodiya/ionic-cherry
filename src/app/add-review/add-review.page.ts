@@ -42,6 +42,9 @@ export class AddReviewPage implements OnInit {
   }
 
   addComment() {
+	 if(this.rating>0){
+		 
+	
     var dat: { [k: string]: any } = {};
     dat.products_id = this.id;
     dat.customers_id = this.shared.customerData.customers_id;
@@ -59,6 +62,10 @@ export class AddReviewPage implements OnInit {
     });
 
   }
+  else{
+	  this.shared.toast("Please Select Rating!");
+  }
+}  
 
   selectRating(value) {
     this.rating = value;
