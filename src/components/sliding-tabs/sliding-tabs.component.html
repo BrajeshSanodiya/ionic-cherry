@@ -1,8 +1,8 @@
 <!-- Home-1 For Segments With Not Image -->
 
 <div class="sliding-tabs">
-  <ion-slides *ngIf="type!='image'" [options]="sliderConfig">
-    <ion-slide class="first-slide" [class.selected]="selected==0" *ngIf="shared.allCategories!=null"
+  <ion-slides *ngIf="type!='image' && config.allPro=='1'" [options]="sliderConfig" >
+  <ion-slide class="first-slide" [class.selected]="selected==0" *ngIf="shared.allCategories!=null && config.allPro=='1'"
       (click)="changeTab('0')">
       {{'All'|translate}}</ion-slide>
     <ion-slide [class.selected]="selected==c.id" *ngFor="let c of shared.allCategories" (click)="changeTab(c)">
@@ -11,8 +11,8 @@
   </ion-slides>
 
 
-  <ion-slides *ngIf="type=='image'" [options]="sliderConfig">
-    <ion-slide class="first-slide" [class.selected]="selected==0" *ngIf="shared.allCategories!=null"
+  <ion-slides *ngIf="type=='image' && config.allPro=='1'" [options]="sliderConfig" >
+   <ion-slide class="first-slide" [class.selected]="selected==0" *ngIf="shared.allCategories!=null && config.allPro=='1'"
       (click)="changeTab('0')">
       <img src="assets/home-page/category.png">
       {{'All'|translate}}</ion-slide>

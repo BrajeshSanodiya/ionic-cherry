@@ -78,6 +78,7 @@ export class ConfigService {
   public recentPro = 1;
   public onsalePro = 1;
   public featPro = 1;
+  public allPro = 1;
   public siteUrl = '';
   public appName = '';
   public packgeName = "";
@@ -275,7 +276,8 @@ export class ConfigService {
     this.onsalePro = this.appSettings.on_sale;
     this.featPro = this.appSettings.featured_product;
     this.homePage = this.appSettings.home_style;
-	//this.homePage = 11;
+	this.allPro  =this.appSettings.all_product;
+	//this.homePage = 4;
     this.categoryPage = this.appSettings.category_style;
 
     if (this.appSettings.card_style)

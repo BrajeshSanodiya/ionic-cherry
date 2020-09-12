@@ -25,6 +25,7 @@ import { AppEventsService } from 'src/providers/app-events/app-events.service';
 export class SettingsPage implements OnInit {
 
   setting: { [k: string]: any } = {};
+  
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -222,6 +223,8 @@ export class SettingsPage implements OnInit {
     this.navCtrl.navigateForward(this.config.currentRoute + '/' + value);
   }
   ngOnInit() {
+	  this.setting.notification = true;
+	  
   }
 
 }
